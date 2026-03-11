@@ -1,0 +1,31 @@
+{% import "_includes/forms" as forms %}
+{% do view.registerAssetBundle("QD\\readonly\\assetbundles\\fields\\Fields") %}
+
+{# Have to decode it so we can prettify it #}
+{%- set decodedValue = value is not null ? value|json_decode : null %}
+{%- set jsonValue = decodedValue is not null ? decodedValue|json_encode(constant('JSON_PRETTY_PRINT') b-or constant('JSON_UNESCAPED_SLASHES')) : "" %}
+{%- set rowCount = jsonValue|split('\n')|length %}
+
+{# Hide empty objects, arrays and strings #}
+{%- set isEmpty = jsonValue|trim == "" or jsonValue == "{}" or jsonValue == "[]" %}
+
+{%- set class = [
+    'nicetext',
+    'qd-disabled',
+    'code',
+    'readable',
+    isEmpty ? 'hidden',
+    ]|filter
+%}
+
+{% set config = {
+    id: id ?? field.getInputId(),
+    describedBy: field.describedBy,
+    name: name,
+    value: jsonValue,
+    class: class,
+    rows: rowCount,
+    readonly: true,
+} %}
+
+{{ forms.textarea(config) }}

@@ -1,0 +1,36 @@
+{
+  "name": "quantity-digital/readonly-fields",
+  "description": "Read only fields for CraftCMS",
+  "type": "craft-plugin",
+  "version": "5.0.0",
+  "keywords": [
+    "craft",
+    "cms",
+    "craftcms",
+    "readonly"
+  ],
+  "support": {
+    "docs": "https://github.com/quantity-digital/readonly-fields",
+    "issues": "https://github.com/quantity-digital/quantity-digital/issues"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Quantity Digital",
+      "homepage": "https://www.quantity.dk/"
+    }
+  ],
+  "require": {
+    "craftcms/cms": "^5.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "QD\\readonly\\": "src/"
+    }
+  },
+  "extra": {
+    "name": "Read-only Fields",
+    "handle": "readonly-fields",
+    "class": "QD\\readonly\\ReadonlyFields"
+  }
+}

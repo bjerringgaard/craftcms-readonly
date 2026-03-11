@@ -1,0 +1,19 @@
+.qd-disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.qd-disabled .delete {
+  display: none;
+}
+
+.qd-construction {
+  border: 1px solid orange;
+}
+
+#fields-pim_brand,
+#fields-pim_productLevel,
+div[id*='-pim_properties'] {
+  pointer-events: none;
+  opacity: 0.5;
+}

@@ -1,0 +1,13 @@
+
+{% do view.registerAssetBundle("QD\\readonly\\assetbundles\\fields\\Fields") %}
+<div class="elementselect qd-disabled">
+    <div class="elements flex-row flex-wrap">
+        {% for val in value|json_decode %}
+            <div class="element large hasthumb">
+                <div class="elementthumb">
+                    <img sizes="120px" src="{{ val.url }}">
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

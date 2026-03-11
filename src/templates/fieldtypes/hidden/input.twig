@@ -1,0 +1,27 @@
+{% do view.registerAssetBundle("QD\\readonly\\assetbundles\\fields\\Fields") %}
+{% import "_includes/forms" as forms %}
+
+{% set config = {
+    id: id ?? field.getInputId(),
+    describedBy: field.describedBy,
+    name: name,
+    value: value,
+    class: [
+        'nicetext',
+        'qd-construction',
+        currentUser.admin ? 'qd-disabled' : 'hidden',
+        field.code ? 'code',
+        field.uiMode == 'enlarged' ? 'readable',
+    ]|filter,
+    required: field.required,
+    orientation: orientation ?? null,
+    readonly: true,
+} %}
+
+{{ forms.textField(config) }}
+
+{% if not currentUser.admin %}
+    {% js %}
+        $('#{{ id }}-field').addClass('hidden');
+    {% endjs %}
+{% endif %}

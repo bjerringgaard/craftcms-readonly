@@ -1,0 +1,30 @@
+{% import "_includes/forms" as forms %}
+{% do view.registerAssetBundle("QD\\readonly\\assetbundles\\fields\\Fields") %}
+
+{%- set class = [
+    'nicetext',
+    'qd-disabled',
+    field.code ? 'code',
+    field.uiMode == 'enlarged' ? 'readable',
+]|filter %}
+
+{% set config = {
+    id: id ?? field.getInputId(),
+    describedBy: field.describedBy,
+    name: name,
+    value: value,
+    class: class,
+    maxlength: field.charLimit,
+    showCharsLeft: true,
+    placeholder: placeholder,
+    required: field.required,
+    rows: field.initialRows,
+    orientation: orientation ?? null,
+    readonly: true,
+} %}
+
+{% if field.multiline %}
+    {{ forms.textarea(config) }}
+{% else %}
+    {{ forms.textField(config) }}
+{% endif %}
