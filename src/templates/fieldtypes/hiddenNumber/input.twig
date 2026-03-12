@@ -1,0 +1,23 @@
+{% do view.registerAssetBundle("QD\\readonly\\assetbundles\\fields\\Fields") %}
+{% import "_includes/forms" as forms %}
+
+{% set config = {
+    id: id,
+    name: name,
+    value: value,
+    class: [
+        'nicetext',
+        'qd-construction',
+        currentUser.admin ? 'qd-disabled' : 'hidden',
+    ]|filter,
+    readonly: true,
+    type: 'number'
+} %}
+
+{{ forms.textField(config) }}
+
+{% if not currentUser.admin %}
+    {% js %}
+        $('#{{ id }}-field').addClass('hidden');
+    {% endjs %}
+{% endif %}

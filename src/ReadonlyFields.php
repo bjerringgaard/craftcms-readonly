@@ -14,6 +14,7 @@ use craft\base\Plugin;
 use craft\events\RegisterComponentTypesEvent;
 use craft\services\Fields;
 use QD\readonly\fields\HiddenField;
+use QD\readonly\fields\HiddenNumberField;
 use QD\readonly\fields\ImagesField;
 use QD\readonly\fields\JsonField;
 use QD\readonly\fields\TableField;
@@ -60,6 +61,7 @@ class ReadonlyFields extends Plugin
     Event::on(Fields::class, Fields::EVENT_REGISTER_FIELD_TYPES, function (RegisterComponentTypesEvent $event) {
       $event->types[] = StringField::class;
       $event->types[] = HiddenField::class;
+      $event->types[] = HiddenNumberField::class;
       $event->types[] = TableField::class;
       $event->types[] = ImagesField::class;
       $event->types[] = JsonField::class;
